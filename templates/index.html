@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Dashboards</title>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">Stock Dashboards</div>
+    <div class="tagline">Interactive financial dashboard</div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="field">
+    <label>Ticker Symbol</label>
+    <input id="ticker" type="text" value="NVDA" placeholder="e.g. AAPL" spellcheck="false">
+  </div>
+
+  <div class="field">
+    <label>Revenue URL (optional)</label>
+    <input id="rev-url" type="text"
+      value="https://www.macrotrends.net/stocks/charts/NVDA/nvidia/revenue"
+      placeholder="macrotrends revenue URL" style="min-width:340px">
+  </div>
+
+  <button class="btn" onclick="loadChart()">
+    Load  <span class="spinner" id="spinner">⠋</span>
+  </button>
+
+  <div class="presets">
+    <span style="font-size:0.65rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;align-self:center">Quick&nbsp;load:</span>
+    <button class="preset-btn" onclick="loadPreset('TSLA','tesla')">TSLA</button>
+    <button class="preset-btn" onclick="loadPreset('GME','gamestop')">GME</button>
+    <button class="preset-btn" onclick="loadPreset('AAPL','apple')">AAPL</button>
+    <button class="preset-btn" onclick="loadPreset('AMZN','amazon')">AMZN</button>
+    <button class="preset-btn" onclick="loadPreset('NVDA','nvidia')">NVDA</button>
+  </div>
+
+  <span id="status"></span>
+</div>
+
+<div id="chart-container">
+  <div id="chart"></div>
+</div>
+
+<footer>DATA VIA YAHOO FINANCE &amp; MACROTRENDS &nbsp;·&nbsp; BUILT WITH PLOTLY &amp; FLASK</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
